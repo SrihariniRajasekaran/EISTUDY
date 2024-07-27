@@ -1,4 +1,4 @@
-package sdp2;
+package usecase2;
 //Fascade Pattern
 class CDPlayer {
     public void on() {
