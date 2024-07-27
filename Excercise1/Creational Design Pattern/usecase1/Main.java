@@ -1,4 +1,4 @@
-package cdp2;
+package usecase1;
 interface Transportmode {
     void delivery();
 }
