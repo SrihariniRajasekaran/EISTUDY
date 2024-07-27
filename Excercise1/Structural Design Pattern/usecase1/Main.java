@@ -1,4 +1,4 @@
-package sdp1;
+package usecase1;
 //ADAPTER DESIGN PATTERN
 interface FahrenheitSensor {
     double getfahrenheit();
