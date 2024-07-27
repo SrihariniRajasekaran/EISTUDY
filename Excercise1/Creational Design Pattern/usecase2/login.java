@@ -1,4 +1,4 @@
-package cdp1;
+package usecase2;
 
 public class login {
         private static login instance;
