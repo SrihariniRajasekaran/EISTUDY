@@ -51,7 +51,7 @@ public class ScheduleManager {
         if (isValidTask(task)) {
             tasks.add(task);
             Collections.sort(tasks, Comparator.comparing(Task::getStartTime));
-            notifyObservers("New Task Added Sucessfully " + task);
+            notifyObservers("New Task Added Sucessfully- " + task);
         } else {
             notifyObservers("Error: Task conflicts with existing task or invalid time.");
         }
@@ -83,9 +83,11 @@ public class ScheduleManager {
         if(tasks.isEmpty()){
             System.out.println("No Tasks ");
         }
-        System.out.println(" Tasks:\n");
-        Collections.sort(tasks, Comparator.comparing(Task::getStartTime));
+        else{
+        System.out.println(" \nTasks:");
+        Collections.sort(tasks, Comparator.comparing(Task::getStartTime));}
         return tasks;
+    
     }
     private void notifyObservers(String message) {
         for (TaskObserver observer : observers) {
@@ -108,7 +110,36 @@ public class ScheduleManager {
     private boolean isValidTimeFormat(String time) {
         return time.matches("([0-1]?[0-9]|2[0-3]):[0-5][0-9]");
     }
-
+    public List<Task> getTasksByPriority(String priority) {
+        List<Task> filteredTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getPriority().equalsIgnoreCase(priority)) {
+                filteredTasks.add(task);
+            }
+        }
+        filteredTasks.sort(Comparator.comparing(Task::getStartTime)); 
+        return filteredTasks;
+    }
+    public void editTask(String TaskName, String newTaskName, String newStartTime, String newEndTime, String newPriority) {
+        for (Task task : tasks) {
+            if (task.getTaskName().equals(TaskName)) {
+                Task editedTask = new Task(newTaskName, newStartTime, newEndTime, newPriority);
+                if (isValidTask(editedTask) || (task.getStartTime().equals(newStartTime) && task.getEndTime().equals(newEndTime))) {
+                    task.setTaskName(newTaskName);
+                    task.setStartTime(newStartTime);
+                    task.setEndTime(newEndTime);
+                    task.setPriority(newPriority);
+                    Collections.sort(tasks, Comparator.comparing(Task::getStartTime));
+                    notifyObservers("Task edited: " + task);
+                } else {
+                    notifyObservers("Error: Edited task conflicts with existing tasks or invalid time.");
+                }
+                return; 
+            }
+        }
+        notifyObservers("Error: Task not found: " + TaskName);
+    }
+    
 }
 
     

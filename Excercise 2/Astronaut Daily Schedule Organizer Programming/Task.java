@@ -38,7 +38,21 @@ public class Task{
         public void setCompleted(boolean completed) {
             this.completed = completed;
         }
-       
+        public void setTaskName(String TaskName) {
+            this.TaskName = TaskName;
+        }
+    
+        public void setStartTime(String startTime) {
+            this.startTime = startTime;
+        }
+    
+        public void setEndTime(String endTime) {
+            this.endTime = endTime;
+        }
+    
+        public void setPriority(String priority) {
+            this.priority = priority;
+        }
     
     
         @Override

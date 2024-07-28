@@ -10,7 +10,7 @@ public class Main {
         scheduleManager.addObserver(user1);
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("\n1. Add Task\n2. Remove Task\n3. View Tasks\n4. Mark Task as Completed\n5. Add observer\n6. Remove observer\n7. Exit");
+            System.out.println("\n1. Add Task\n2. Remove Task\n3. View Tasks\n4. Mark Task as Completed\n5. Add observer\n6. Remove observer\n7. View by Priority\n8. Edit Existing task\n9. Exit");
             System.out.print(" Select the Option:");
             int choice = scanner.nextInt();
             scanner.nextLine(); 
@@ -34,7 +34,6 @@ public class Main {
                     scheduleManager.removeTask(removeTaskName);
                     break;
                 case 3:
-                    
                     for (Task t : scheduleManager.getTasks()) {
                         System.out.println(t);
                     }
@@ -58,8 +57,28 @@ public class Main {
                     scheduleManager.removeObserver(deluser);
                     System.out.print(" Observer Removed ");
                     break;
-                
                 case 7:
+                    System.out.print("Enter Priority Level: ");
+                    String filterPriority = scanner.nextLine();
+                    System.out.println("Tasks with priority " + filterPriority + ":");
+                    for (Task t : scheduleManager.getTasksByPriority(filterPriority)) {
+                       System.out.println(t);
+                    }
+                    break;
+                case 8:
+                    System.out.print("Enter Task Name to Edit: ");
+                    String editTaskName = scanner.nextLine();
+                    System.out.print("Enter New Task Name: ");
+                    String newTaskName= scanner.nextLine();
+                    System.out.print("Enter New Start Time (HH:MM)in 24hrs format: ");
+                    String newStartTime = scanner.nextLine();
+                    System.out.print("Enter New End Time (HH:MM) in 24hrs format: ");
+                    String newEndTime = scanner.nextLine();
+                    System.out.print("Enter New Priority: ");
+                    String newPriority = scanner.nextLine();
+                    scheduleManager.editTask(editTaskName, newTaskName, newStartTime, newEndTime, newPriority);
+                    break;
+                case 9:
                     scanner.close();
                     return;
 
