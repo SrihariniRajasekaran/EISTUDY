@@ -1,11 +1,11 @@
 # EISTUDY-2024-25: Coding exercises  
  ## EXCERCISE-1: Problem Statement on Design patterns
   ### 1.CREATIONAL DESIGN PATTERN: It Provide object creation mechanisms that increase flexibility and reuse of existing code.
-                Two use cases to demonstrate two behavioural design pattern.
-                #### i)Singleton Pattern: 
+  Two use cases to demonstrate two behavioural design pattern.
+                i)Singleton Pattern: 
                     Singleton is a creational design pattern that lets you ensure that a class has only one instance, while providing a global access point to this instance.
                   Example:Logger
-                #### ii) Factory Pattern:
+                 ii) Factory Pattern:
                     Factory Method is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
                   Example:Tranpertation mode
  ### 2.STRUCTURAL DESIGN PATTERN:These patterns explain how to assemble objects and classes into larger structures while keeping these structures flexible and efficient.
