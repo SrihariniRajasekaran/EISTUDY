@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 interface TaskObserver {
     void update(String message);
@@ -52,8 +55,10 @@ public class ScheduleManager {
             tasks.add(task);
             Collections.sort(tasks, Comparator.comparing(Task::getStartTime));
             notifyObservers("New Task Added Sucessfully- " + task);
+            logger.log(Level.INFO, "Task Added: {0}", task);
         } else {
             notifyObservers("Error: Task conflicts with existing task or invalid time.");
+            logger.log(Level.WARNING, "Failed to Add task due to conflict or invalid time: {0}", task);
         }
     }
 
@@ -62,10 +67,12 @@ public class ScheduleManager {
             if (task.getTaskName ().equals(TaskName)) {
                 tasks.remove(task);
                 notifyObservers("Task removed: " + task);
+                logger.log(Level.INFO, "Task removed: {0}", task);
                 return;
             }
         }
         notifyObservers("Error: Task not found: " + TaskName );
+        logger.log(Level.WARNING, "Failed to Remove task due to conflict or invalid time: {0}", TaskName);
     }
 
     public void markTaskAsCompleted(String TaskName ) {
@@ -73,10 +80,12 @@ public class ScheduleManager {
             if (task.getTaskName ().equals(TaskName )) {
                 task.setCompleted(true);
                 notifyObservers("Task marked as completed: " + task);
+                logger.log(Level.INFO, "Mark As Completed: {0}", task);
                 return;
             }
         }
         notifyObservers("Error: Task not found: " + TaskName );
+        logger.log(Level.WARNING, "Failed to mark as completed task due to conflict or invalid time: {0}", TaskName);
     }
 
     public List<Task> getTasks() {
@@ -131,8 +140,10 @@ public class ScheduleManager {
                     task.setPriority(newPriority);
                     Collections.sort(tasks, Comparator.comparing(Task::getStartTime));
                     notifyObservers("Task edited: " + task);
+                    logger.log(Level.INFO, "Task Edited: {0}", task);
                 } else {
                     notifyObservers("Error: Edited task conflicts with existing tasks or invalid time.");
+                    logger.log(Level.WARNING, "Failed to Edit the task due to conflict or invalid time: {0}", TaskName);
                 }
                 return; 
             }
