@@ -2,22 +2,22 @@
  ## EXCERCISE-1: Problem Statement on Design patterns
   ### 1.CREATIONAL DESIGN PATTERN: It Provide object creation mechanisms that increase flexibility and reuse of existing code.
   Two use cases to demonstrate two behavioural design pattern.
-                i)Singleton Pattern: 
-                    Singleton is a creational design pattern that lets you ensure that a class has only one instance, while providing a global access point to this instance.
-                  Example:Logger
-                 ii) Factory Pattern:
-                    Factory Method is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
-                  Example:Tranpertation mode
+   i)Singleton Pattern: 
+   Singleton is a creational design pattern that lets you ensure that a class has only one instance, while providing a global access point to this instance.
+    Example:Logger
+    ii) Factory Pattern:
+    Factory Method is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
+    Example:Tranpertation mode
  ### 2.STRUCTURAL DESIGN PATTERN:These patterns explain how to assemble objects and classes into larger structures while keeping these structures flexible and efficient.
-                    Two use cases to demonstrate two creational design pattern.
-                  #### i)Adapter Pattern:
-                      Adapter is a structural design pattern that allows objects with incompatible interfaces to collaborate.
-                  Example: Temperature Sensor Adapter
-                  #### ii)Facade Pattern:
-                      Facade is a structural design pattern that provides a simplified interface to a library, a framework, or any other complex set of classes.
-                    Example: HomeTheater System
+ Two use cases to demonstrate two creational design pattern.
+ #### i)Adapter Pattern:
+ Adapter is a structural design pattern that allows objects with incompatible interfaces to collaborate.
+  Example: Temperature Sensor Adapter
+  #### ii)Facade Pattern:
+  Facade is a structural design pattern that provides a simplified interface to a library, a framework, or any other complex set of classes.
+ Example: HomeTheater System
   ### 3. BEHAVIOURAL DESIGN PATTERN:These patterns are concerned with algorithms and the assignment of responsibilities between objects.
-                    Two use cases to demonstrate two structural design pattern.
+ Two use cases to demonstrate two structural design pattern.
                     #### i)Observer Pattern:
                         Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.
                      Example:Weather Station
