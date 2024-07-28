@@ -90,7 +90,7 @@ public class ScheduleManager {
 
     public List<Task> getTasks() {
         if(tasks.isEmpty()){
-            System.out.println("No Tasks ");
+            System.out.println("No Tasks scheduled for the day.");
         }
         else{
         System.out.println(" \nTasks:");
