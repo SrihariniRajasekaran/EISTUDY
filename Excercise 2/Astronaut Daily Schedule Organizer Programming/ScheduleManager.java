@@ -29,7 +29,7 @@ public class ScheduleManager {
     private static ScheduleManager instance;
     private List<Task> tasks;
     private List<TaskObserver> observers;
-
+    private static final Logger logger = Logger.getLogger(ScheduleManager.class.getName());
     private ScheduleManager() {
         tasks = new ArrayList<>();
         observers = new ArrayList<>();
