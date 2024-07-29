@@ -1,11 +1,14 @@
 package Excercise2;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 
 interface TaskObserver {
@@ -33,7 +36,18 @@ public class ScheduleManager {
     private ScheduleManager() {
         tasks = new ArrayList<>();
         observers = new ArrayList<>();
+        try {
+            FileHandler fileHandler = new FileHandler("LOGGEER.log", true);
+            fileHandler.setLevel(Level.ALL);
+            fileHandler.setFormatter(new SimpleFormatter());
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "Failed to configure file handler", e);
+        }
+
+        logger.setLevel(Level.ALL);
     }
+    
 
     public static synchronized ScheduleManager getInstance() {
         if (instance == null) {
@@ -47,6 +61,7 @@ public class ScheduleManager {
     }
     @SuppressWarnings("unlikely-arg-type")
     public void removeObserver(String observer) {
+       
         observers.remove(observer);
     }
     
@@ -72,7 +87,7 @@ public class ScheduleManager {
             }
         }
         notifyObservers("Error: Task not found " );
-        logger.log(Level.WARNING, "Failed to Remove task due to conflict or invalid time: {0}", TaskName);
+        logger.log(Level.WARNING, "Failed to Remove task due to Task not found: {0}", TaskName);
     }
 
     public void markTaskAsCompleted(String TaskName ) {
@@ -85,7 +100,7 @@ public class ScheduleManager {
             }
         }
         notifyObservers("Error: Task not found");
-        logger.log(Level.WARNING, "Failed to mark as completed task due to conflict or invalid time: {0}", TaskName);
+        logger.log(Level.WARNING, "Failed to mark as completed task due to conflict Task not found {0}", TaskName);
     }
 
     public List<Task> getTasks() {
@@ -133,6 +148,9 @@ public class ScheduleManager {
                 filteredTasks.add(task);
             }
         }
+        if (filteredTasks.isEmpty()){
+            System.out.println("No tasks with priority");}
+        
         filteredTasks.sort(Comparator.comparing(Task::getStartTime)); 
         return filteredTasks;
     }
@@ -159,5 +177,3 @@ public class ScheduleManager {
     }
     
 }
-
-    
