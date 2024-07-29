@@ -54,7 +54,7 @@ public class ScheduleManager {
         if (isValidTask(task)) {
             tasks.add(task);
             Collections.sort(tasks, Comparator.comparing(Task::getStartTime));
-            notifyObservers("New Task Added Sucessfully- " + task);
+            notifyObservers(" Task Added Sucessfully. No conflicts.");
             logger.log(Level.INFO, "Task Added: {0}", task);
         } else {
             notifyObservers("Error: Task conflicts with existing task or invalid time.");
@@ -66,12 +66,12 @@ public class ScheduleManager {
         for (Task task : tasks) {
             if (task.getTaskName ().equals(TaskName)) {
                 tasks.remove(task);
-                notifyObservers("Task removed: " + task);
+                notifyObservers("Task removed successfully");
                 logger.log(Level.INFO, "Task removed: {0}", task);
                 return;
             }
         }
-        notifyObservers("Error: Task not found: " + TaskName );
+        notifyObservers("Error: Task not found " );
         logger.log(Level.WARNING, "Failed to Remove task due to conflict or invalid time: {0}", TaskName);
     }
 
@@ -79,12 +79,12 @@ public class ScheduleManager {
         for (Task task : tasks) {
             if (task.getTaskName ().equals(TaskName )) {
                 task.setCompleted(true);
-                notifyObservers("Task marked as completed: " + task);
+                notifyObservers("Task marked as completed");
                 logger.log(Level.INFO, "Mark As Completed: {0}", task);
                 return;
             }
         }
-        notifyObservers("Error: Task not found: " + TaskName );
+        notifyObservers("Error: Task not found");
         logger.log(Level.WARNING, "Failed to mark as completed task due to conflict or invalid time: {0}", TaskName);
     }
 
@@ -139,7 +139,7 @@ public class ScheduleManager {
                     task.setEndTime(newEndTime);
                     task.setPriority(newPriority);
                     Collections.sort(tasks, Comparator.comparing(Task::getStartTime));
-                    notifyObservers("Task edited: " + task);
+                    notifyObservers("Task edited Successfully");
                     logger.log(Level.INFO, "Task Edited: {0}", task);
                 } else {
                     notifyObservers("Error: Edited task conflicts with existing tasks or invalid time.");
@@ -148,7 +148,7 @@ public class ScheduleManager {
                 return; 
             }
         }
-        notifyObservers("Error: Task not found: " + TaskName);
+        notifyObservers("Error: Task not found ");
     }
     
 }
