@@ -60,7 +60,6 @@ public class Main {
                 case 7:
                     System.out.print("Enter Priority Level: ");
                     String filterPriority = scanner.nextLine();
-                    System.out.println("Tasks with priority " + filterPriority + ":");
                     for (Task t : scheduleManager.getTasksByPriority(filterPriority)) {
                        System.out.println(t);
                     }
@@ -81,15 +80,9 @@ public class Main {
                 case 9:
                     scanner.close();
                     return;
-
-                
-                
                 default:
                     System.out.println("Invalid choice");
             }
         }
     }
 }
-
-
-
