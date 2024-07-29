@@ -80,9 +80,6 @@ public class Main {
                 case 9:
                     scanner.close();
                     return;
-
-                
-                
                 default:
                     System.out.println("Invalid choice");
             }
