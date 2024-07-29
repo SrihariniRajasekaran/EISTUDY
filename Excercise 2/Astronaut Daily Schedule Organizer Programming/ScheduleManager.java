@@ -104,8 +104,15 @@ public class ScheduleManager {
         }
     }
     private boolean isValidTask(Task newTask) {
+        if (!isValidTimeFormat(newTask.getStartTime()) || !isValidTimeFormat(newTask.getEndTime())) {
+        notifyObservers("Error: Invalid time format.");
+        logger.log(Level.WARNING, "Failed to add task due to invalid time format: {0} - {1}", new Object[]{newTask.getStartTime(), newTask.getEndTime()});
+        return false;
+    }
         for (Task task : tasks) {
             if (isOverlap(task, newTask)) {
+                notifyObservers("Error: Task conflicts with existing task \"" + task.getTaskName() + "\".");
+                logger.log(Level.WARNING, "Failed to add task due to conflict with existing task: {0}", task.getTaskName());
                 return false;
             }
         }
